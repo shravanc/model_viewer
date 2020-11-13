@@ -1,0 +1,29 @@
+:root {
+  --viewer-bg-color: #E7E7E7;
+  --button-bg-color: gray;
+}
+
+body {
+  margin: 1em;
+  padding: 0;
+  font-family: Google Sans, Noto, Roboto, Helvetica Neue, sans-serif;
+}
+
+.overlay {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  background-color: var(--viewer-bg-color);
+  overflow-x: hidden;
+}
+
+.ovrlay-content {
+  position: relative;
+  top: 25%;
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
