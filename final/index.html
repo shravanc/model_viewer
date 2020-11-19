@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Model Viewer</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="stylesheet" href="styles/viewer.css" />
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!-- Loads <model-viewer> for modern browsers: -->
+  <script type="module" src="https://unpkg.com/@google/model-viewer@1.3.0/dist/model-viewer-umd.js">
+  </script>
+
+  <!-- Loads <model-viewer> for old browsers like IE11: -->
+  <script nomodule src="https://unpkg.com/@google/model-viewer@1.3.0/dist/model-viewer-legacy.js">
+  </script>
+</head>
+
+<body>
+
+
+
+  <div id="myNav" class="overlay">
+
+    <div class="overlay-content" id="oc">
+    </div>
+
+  </div>
+  <script src="js/viewer.js"></script>
+</body>
+
+</html>
