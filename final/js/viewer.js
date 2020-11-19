@@ -1,4 +1,14 @@
 
+// Airtable fields
+const GLB_URL           = 'GLB';
+const USDZ_URL          = 'USDZ';
+const IMAGE_DICT        = 'Images';
+const CAROUSAL          = 'Carousal';
+const CAROUSAL_USDZ     = 'Carousal USDZ';
+const CAROUSAL_GLB      = 'Carousal GLB';
+const CAROUSAL_IMAGE    = 'Carousal Images';
+
+
 function slide_now(element, glb, usdz, poster){
       var mv = document.querySelector("#plop");
       mv.src = glb;
@@ -16,8 +26,8 @@ function configure_first_slide(config) {
             onclick="slide_now(this, 'GLB', 'USDZ', 'SLIDER_IMAGE')" 
             style="background-image: url(POSTER_IMAGE);">
           </button>`;
-      first_slide = first_slide.replace('GLB', config['GLB']);
-      first_slide = first_slide.replace('USDZ', config['USDZ']);
+      first_slide = first_slide.replace('GLB', config[GLB_URL]);
+      first_slide = first_slide.replace('USDZ', config[USDZ_URL]);
       first_slide = first_slide.replace('POSTER_IMAGE', config['Images'][0]['url']);
       first_slide = first_slide.replace('SLIDER_IMAGE', config['Images'][0]['thumbnails']['small']['url']);
 
@@ -36,10 +46,10 @@ function configure_remaining_slides(config) {
       var remaining_slides = "";
       for (i = 0; i < products_count; i++) {
 
-            div = each_slide.replace('GLB', config['Carousal GLB'][i]);
-            div = div.replace('USDZ', config['Carousal USDZ'][i]);
-            div = div.replace('POSTER_IMAGE', config['Carousal Images'][i]['thumbnails']['full']['url']);
-            div = div.replace('SLIDER_IMAGE', config['Carousal Images'][i]['thumbnails']['small']['url']);
+            div = each_slide.replace('GLB', config[CAROUSAL_GLB][i]);
+            div = div.replace('USDZ', config[CAROUSAL_USDZ][i]);
+            div = div.replace('POSTER_IMAGE', config[CAROUSAL_IMAGE][i]['thumbnails']['full']['url']);
+            div = div.replace('SLIDER_IMAGE', config[CAROUSAL_IMAGE][i]['thumbnails']['small']['url']);
 
             remaining_slides = remaining_slides + div;
       }
@@ -63,7 +73,6 @@ function carousal_template(config) {
       template = template.replace('FIRST_SLIDE', first_slide);
       template = template.replace('REMAINING_SLIDES', remaining_slides)
 
-      console.log(template)
       return template
 }
 
@@ -76,12 +85,11 @@ function get_record(obj) {
 
 
 function add_viewer(obj) {
-      console.log(obj);
       record = get_record(obj);
 
       oc_tag = document.getElementById("oc");
 
-      if (record['Carousal']) {
+      if (record[CAROUSAL]) {
             oc_tag.innerHTML = carousal_template(record);
       } else {
             oc_tag.innerHTML = plain_template(record);
@@ -93,8 +101,8 @@ function add_viewer(obj) {
 function plain_template(config) {
       return `<model-viewer 
             poster="${config['Images'][0]['url']}"
-            src="${config['GLB']}"
-            iso-src="${config['USDZ']}"
+            src="${config[GLB_URL]}"
+            iso-src="${config[USDZ_URL]}"
             background-color='#bbbbbb'
             shadow-intensity='1'
             camera-controls
